@@ -1,0 +1,6 @@
+##this is a sample glide.yaml
+package: geouniq.com/operations
+import:
+- package: geouniq.com/core
+  repo: ssh://git@gitlab.com/geouniq/backend/core
+  version: v3.4.2

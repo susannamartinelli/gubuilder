@@ -2,11 +2,6 @@
 This utility helps you to build, test, build-image and upload a new microservice
 image on AWS ECR your repository.
 
-## Install
-- `git clone git@gitlab.com:geouniq/backend/builder.git`
-- `git fetch --all`
-- `git checkout latestTag`
-
 from root dir
 - Unix OS
 ```

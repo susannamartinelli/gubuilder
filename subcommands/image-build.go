@@ -96,9 +96,6 @@ type ImageBuilder struct {
 }
 func (i *ImageBuilder) RunCommand(cmd *cobra.Command, args []string) error {
 	infos.Printf("1. Building docker image: \r\n\t%s:%s\n", i.ImageName, i.ImageTag)
-
-	infos.Println()
-
 	err := i.checkImageName()
 	if err != nil {
 		color.Red(fmt.Sprintf("Building image error: %s", err.Error()))

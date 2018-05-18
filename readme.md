@@ -26,7 +26,8 @@ go install -ldflags "-s -X main.Version=`git describe --always --tags`" geouniq.
 You should see `gubuilder` command into your path (if not reopen terminal or type `rehash` command)
 
 ## Prerequisites
- - `~/.aws/credentials` in your $HOME
+ - `.ssh` in your $HOME
+ - `.aws/credentials` in your $HOME
  - you must run in a dir with  `glide.yaml` and `Dockerfile` files
 
 ## Usage

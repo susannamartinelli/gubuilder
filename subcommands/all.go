@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"github.com/fatih/color"
 )
+var notest bool
 var allCmd = &cobra.Command{
 	Use:     "all",
 	Short:   "Execute all steps go build, go test, image build and image deploy (you must run with ./glide.yaml file )",
@@ -14,6 +15,7 @@ var allCmd = &cobra.Command{
 	RunE:    RunALL,
 }
 func init(){
+	allCmd.Flags().BoolVar(&notest ,"notest", false, "No test running")
 	RootCmd.AddCommand(allCmd)
 }
 
@@ -69,11 +71,16 @@ func RunALL(cmd *cobra.Command, args []string) (err error) {
 	if err != nil {
 		return
 	}
-	color.Cyan("Testing package: %s\n", goTester.Packagename)
-	err = goTester.RunCommand(nil, []string{})
-	if err != nil {
-		return
+	if notest {
+		color.Cyan("Skipping test package: %s\n", goTester.Packagename)
+	} else {
+		color.Cyan("Testing package: %s\n", goTester.Packagename)
+		err = goTester.RunCommand(nil, []string{})
+		if err != nil {
+			return
+		}
 	}
+
 	color.Cyan("Image build: %s %s\n", imageBuilder.ImageName, imageBuilder.ImageTag)
 	err = imageBuilder.RunCommand(nil, []string{})
 	if err != nil {

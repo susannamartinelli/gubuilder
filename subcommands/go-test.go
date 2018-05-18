@@ -114,8 +114,18 @@ func (g *GoTester) RunCommand(cmd *cobra.Command, args []string) error {
 	}
 	defer reader.Close()
 	scanner := bufio.NewScanner(reader)
+	failing := false
 	for scanner.Scan() {
-		color.White(scanner.Text())
+		txt := scanner.Text()
+		if strings.HasPrefix(txt, "FAIL") {
+			failing = true
+			color.Red(txt)
+		} else {
+			color.White(txt)
+		}
+	}
+	if failing {
+		return fmt.Errorf("failing tests exiting")
 	}
 	defer  cli.ContainerRemove(ctx,resp.ID, types.ContainerRemoveOptions{RemoveLinks:true, RemoveVolumes:true, Force: true} )
 	return nil

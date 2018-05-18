@@ -69,7 +69,7 @@ type TestContainerManager struct {
 }
 
 func (cc TestContainerManager) getContainerCommand() (string, error) {
-	glideCommands := "glide i -force"
+	glideCommands := "glide i -force;"
 	return fmt.Sprintf("%s go test %s/...", glideCommands, cc.PackageName), nil
 }
 

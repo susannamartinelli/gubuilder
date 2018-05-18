@@ -199,7 +199,7 @@ func (i *ImageDeployer) RunCommand(cmd *cobra.Command, args []string) error {
 		Local string
 		Remote string
 	}
-	infos.Println()
+
 	err := i.checkImageName()
 	if err != nil {
 		color.Red(fmt.Sprintf("Check image name error: %s", err.Error()))
